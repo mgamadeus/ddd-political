@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="DDD\Modules\Political\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Entities/Languages" isTestSource="false" packagePrefix="DDD\Domain\Common\Entities\Languages\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Entities/Locales" isTestSource="false" packagePrefix="DDD\Domain\Common\Entities\Locales\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Entities/PoliticalEntities" isTestSource="false" packagePrefix="DDD\Domain\Common\Entities\PoliticalEntities\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Repo/Argus/PoliticalEntities" isTestSource="false" packagePrefix="DDD\Domain\Common\Repo\Argus\PoliticalEntities\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Repo/DB/Languages" isTestSource="false" packagePrefix="DDD\Domain\Common\Repo\DB\Languages\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Repo/DB/Locales" isTestSource="false" packagePrefix="DDD\Domain\Common\Repo\DB\Locales\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Repo/DB/PoliticalEntities" isTestSource="false" packagePrefix="DDD\Domain\Common\Repo\DB\PoliticalEntities\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain/Common/Services/PoliticalEntities" isTestSource="false" packagePrefix="DDD\Domain\Common\Services\PoliticalEntities\" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
