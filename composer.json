@@ -3,7 +3,7 @@
     "description": "Countries, languages, locales, political regions, states, localities for mgamadeus/ddd",
     "minimum-stability": "stable",
     "license": "MIT",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "authors": [
         {
             "name": "Marius-Eugen Gerdan",
@@ -16,15 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DDD\\Modules\\Political\\": "src/",
-            "DDD\\Domain\\Common\\Entities\\PoliticalEntities\\": "src/Domain/Common/Entities/PoliticalEntities/",
-            "DDD\\Domain\\Common\\Entities\\Languages\\": "src/Domain/Common/Entities/Languages/",
-            "DDD\\Domain\\Common\\Entities\\Locales\\": "src/Domain/Common/Entities/Locales/",
-            "DDD\\Domain\\Common\\Repo\\DB\\PoliticalEntities\\": "src/Domain/Common/Repo/DB/PoliticalEntities/",
-            "DDD\\Domain\\Common\\Repo\\DB\\Languages\\": "src/Domain/Common/Repo/DB/Languages/",
-            "DDD\\Domain\\Common\\Repo\\DB\\Locales\\": "src/Domain/Common/Repo/DB/Locales/",
-            "DDD\\Domain\\Common\\Repo\\Argus\\PoliticalEntities\\": "src/Domain/Common/Repo/Argus/PoliticalEntities/",
-            "DDD\\Domain\\Common\\Services\\PoliticalEntities\\": "src/Domain/Common/Services/PoliticalEntities/"
+            "DDD\\": "src/"
         }
     },
     "extra": {
