@@ -37,6 +37,21 @@ Place a file at the same path in your project's `config/app/Common/Political/` t
 
 For example, to add a custom country or change an existing entry, create `config/app/Common/Political/Countries.php` in your project with the full array — it replaces the module's version entirely.
 
+## Service registration
+
+Add to your project's `services.yaml`:
+
+```yaml
+# DDD Module: ddd-common-political
+DDD\Domain\Common\Services\PoliticalEntities\:
+    resource: '%kernel.project_dir%/vendor/mgamadeus/ddd-common-political/src/Domain/Common/Services/PoliticalEntities/*'
+    public: true
+
+DDD\Domain\Common\Services\Languages\:
+    resource: '%kernel.project_dir%/vendor/mgamadeus/ddd-common-political/src/Domain/Common/Services/Languages/*'
+    public: true
+```
+
 ## Importing seed data
 
 The module provides services with `importFromConfig()` methods. Create admin endpoints in your app that call these services:

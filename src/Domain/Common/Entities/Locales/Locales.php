@@ -6,7 +6,7 @@ namespace DDD\Domain\Common\Entities\Locales;
 
 use DDD\Domain\Common\Entities\Languages\Language;
 use DDD\Domain\Common\Repo\DB\Locales\DBLocales;
-use DDD\Domain\Common\Services\LocalesService;
+use DDD\Domain\Common\Services\Languages\LocalesService;
 use DDD\Domain\Base\Entities\EntitySet;
 use DDD\Domain\Base\Entities\LazyLoad\LazyLoadRepo;
 use DDD\Domain\Base\Entities\QueryOptions\QueryOptionsTrait;

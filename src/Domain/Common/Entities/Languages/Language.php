@@ -7,7 +7,7 @@ namespace DDD\Domain\Common\Entities\Languages;
 use DDD\Domain\Common\Entities\Locales\Locale;
 use DDD\Domain\Common\Entities\Roles\Role;
 use DDD\Domain\Common\Repo\DB\Languages\DBLanguage;
-use DDD\Domain\Common\Services\LanguagesService;
+use DDD\Domain\Common\Services\Languages\LanguagesService;
 use DDD\Domain\Base\Entities\Attributes\NoRecursiveUpdate;
 use DDD\Domain\Base\Entities\Attributes\RolesRequiredForUpdate;
 use DDD\Domain\Base\Entities\Entity;

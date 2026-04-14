@@ -8,7 +8,7 @@ use DDD\Domain\Common\Entities\Languages\Language;
 use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 use DDD\Domain\Common\Entities\Roles\Role;
 use DDD\Domain\Common\Repo\DB\Locales\DBLocale;
-use DDD\Domain\Common\Services\LocalesService;
+use DDD\Domain\Common\Services\Languages\LocalesService;
 use DateTime;
 use DDD\Domain\Base\Entities\Attributes\RolesRequiredForUpdate;
 use DDD\Domain\Base\Entities\Entity;

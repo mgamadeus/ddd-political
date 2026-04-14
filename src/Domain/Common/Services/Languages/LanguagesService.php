@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DDD\Domain\Common\Services;
+namespace DDD\Domain\Common\Services\Languages;
 
 use DDD\Domain\Common\Entities\Languages\Language;
 use DDD\Domain\Common\Entities\Languages\Languages;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DDD\Domain\Common\Entities\Languages;
 
 use DDD\Domain\Common\Repo\DB\Languages\DBLanguages;
-use DDD\Domain\Common\Services\LanguagesService;
+use DDD\Domain\Common\Services\Languages\LanguagesService;
 use DDD\Domain\Base\Entities\EntitySet;
 use DDD\Domain\Base\Entities\LazyLoad\LazyLoadRepo;
 use DDD\Domain\Base\Entities\QueryOptions\QueryOptionsTrait;
