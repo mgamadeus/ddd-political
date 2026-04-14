@@ -14,9 +14,9 @@
  *   isDefaultLocaleForLanguage – exactly one locale per language (the "canonical" country)
  *   isDefaultLocaleForCountry  – exactly one locale per country (the primary language)
  *
- * @see \App\Domain\Common\Entities\Locales\Locale
- * @see \App\Domain\Common\Entities\Languages\Language
- * @see \App\Domain\Common\Entities\PoliticalEntities\Countries\Country
+ * @see \DDD\Domain\Common\Entities\Locales\Locale
+ * @see \DDD\Domain\Common\Entities\Languages\Language
+ * @see \DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country
  */
 return [
 

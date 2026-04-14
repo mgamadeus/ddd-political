@@ -47,7 +47,7 @@ class PoliticalRegionsService extends EntitiesService
     {
         $importedPoliticalRegions = new PoliticalRegions();
 
-        $config = Config::get('Common.PoliticalRegions.politicalRegions');
+        $config = Config::get('Common.Political.PoliticalRegions.politicalRegions');
         if (!is_array($config) || empty($config)) {
             return $importedPoliticalRegions;
         }

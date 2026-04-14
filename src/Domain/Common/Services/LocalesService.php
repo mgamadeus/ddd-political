@@ -67,7 +67,7 @@ class LocalesService extends EntitiesService
     ): Locales {
         $importedLocales = new Locales();
 
-        $localesConfig = Config::get('Common.Locales.locales');
+        $localesConfig = Config::get('Common.Political.Locales.locales');
         if (!is_array($localesConfig) || empty($localesConfig)) {
             return $importedLocales;
         }

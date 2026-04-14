@@ -13,7 +13,7 @@
  * only translations that differ from the English name are included.
  * English (en) is always present as the default fallback.
  *
- * @see \App\Domain\Common\Entities\Languages\Language
+ * @see \DDD\Domain\Common\Entities\Languages\Language
  */
 return [
     'languages' => [

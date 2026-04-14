@@ -97,7 +97,7 @@ class Locale extends Entity
             $newLocale->countryShortCode = $countryShortCode;
             return $newLocale;
         } elseif ($language) {
-            if ($countryShortCode = Config::get('Common.Locales.defaultCountryCodesForLanguage.' . $language)) {
+            if ($countryShortCode = Config::get('Common.Political.Locales.defaultCountryCodesForLanguage.' . $language)) {
                 $newLocale = new Locale();
                 $newLocale->languageCode = $language;
                 $newLocale->countryShortCode = $countryShortCode;
@@ -111,7 +111,7 @@ class Locale extends Entity
     {
         parent::setPropertiesFromObject($object, $throwErrors, $rootCall, $sanitizeInput);
         if (isset($this->languageCode) && !isset($this->countryShortCode)) {
-            if ($countryShortCode = Config::get('Common.Locales.defaultCountryCodesForLanguage.' . $this->languageCode)) {
+            if ($countryShortCode = Config::get('Common.Political.Locales.defaultCountryCodesForLanguage.' . $this->languageCode)) {
                 $this->countryShortCode = $countryShortCode;
             }
         }
@@ -129,7 +129,7 @@ class Locale extends Entity
 
     public function formatDateOrDateTime(DateTime $dateOrDateTime): string
     {
-        $timeConfig = Config::get('Common.Locales.dateTimeFormats')[$this . ''] ?? Config::get('Common.Locales.dateTimeFormats.default');
+        $timeConfig = Config::get('Common.Political.Locales.dateTimeFormats')[$this . ''] ?? Config::get('Common.Political.Locales.dateTimeFormats.default');
         if ($dateOrDateTime instanceof Date) {
             return $dateOrDateTime->format($timeConfig['date']);
         }

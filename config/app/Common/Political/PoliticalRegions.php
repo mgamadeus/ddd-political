@@ -12,7 +12,7 @@
  * children use {parent}-{sub} pattern (EU-EU, AM-NA).
  * Numeric codes follow UN M49 where applicable.
  *
- * @see \App\Domain\Common\Entities\PoliticalEntities\PoliticalRegions\PoliticalRegion
+ * @see \DDD\Domain\Common\Entities\PoliticalEntities\PoliticalRegions\PoliticalRegion
  */
 return [
     'politicalRegions' => [

@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Services\PoliticalEntities;
 
+use DDD\Domain\Base\Entities\Translatable\Translatable;
+use DDD\Domain\Base\Services\EntitiesService;
 use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 use DDD\Domain\Common\Entities\PoliticalEntities\States\State;
 use DDD\Domain\Common\Entities\PoliticalEntities\States\States;
 use DDD\Domain\Common\Repo\Argus\PoliticalEntities\ArgusState;
 use DDD\Domain\Common\Repo\DB\PoliticalEntities\States\DBState;
 use DDD\Domain\Common\Repo\DB\PoliticalEntities\States\DBStates;
-use DDD\Infrastructure\Services\AppService;
-use DDD\Domain\Base\Entities\Translatable\Translatable;
-use DDD\Domain\Base\Services\EntitiesService;
 use DDD\Infrastructure\Exceptions\BadRequestException;
 use DDD\Infrastructure\Exceptions\InternalErrorException;
-use Google\Cloud\Core\Exception\NotFoundException;
+use DDD\Infrastructure\Exceptions\NotFoundException;
+use DDD\Infrastructure\Services\DDDService;
+use Doctrine\ORM\Mapping\Entity;
 use ReflectionException;
 
 /**
@@ -81,24 +82,23 @@ class StatesService extends EntitiesService
                 }
                 return null;
             }
-            AppService::instance()->deactivateEntityRightsRestrictions();
+            DDDService::instance()->deactivateEntityRightsRestrictions();
             Translatable::setTranslationSettingsSnapshot();
             Translatable::setCurrentCountryCode(null);
             Translatable::setCurrentLanguageCode($state->country->getDefaultLanguage()->languageCode);
             $state->name = $localizedName;
-            $state->setTranslationForProperty('name', $localizedName,$currentLanguageCode);
+            $state->setTranslationForProperty('name', $localizedName, $currentLanguageCode);
             $state->update();
             Translatable::restoreTranslationSettingsSnapshot();
-            AppService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
+            DDDService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
             return $state;
-        }
-        else {
-            $currentLocalizedName = $state->getTranslationForProperty('name',$currentLanguageCode);
+        } else {
+            $currentLocalizedName = $state->getTranslationForProperty('name', $currentLanguageCode);
             if (!$currentLocalizedName || $currentLocalizedName !== $localizedName) {
-                AppService::instance()->deactivateEntityRightsRestrictions();
-                $state->setTranslationForProperty('name', $localizedName,  $currentLanguageCode);
+                DDDService::instance()->deactivateEntityRightsRestrictions();
+                $state->setTranslationForProperty('name', $localizedName, $currentLanguageCode);
                 $state->update();
-                AppService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
+                DDDService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
             }
         }
         return $state;

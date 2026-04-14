@@ -46,7 +46,7 @@ class CountriesService extends EntitiesService
     ): Countries {
         $importedCountries = new Countries();
 
-        $countriesConfig = Config::get('Common.Countries.countries');
+        $countriesConfig = Config::get('Common.Political.Countries.countries');
         if (!is_array($countriesConfig) || empty($countriesConfig)) {
             return $importedCountries;
         }

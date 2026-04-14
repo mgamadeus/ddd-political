@@ -54,7 +54,7 @@ class LanguagesService extends EntitiesService
     {
         $importedLanguages = new Languages();
 
-        $languagesConfig = Config::get('Common.Languages.languages');
+        $languagesConfig = Config::get('Common.Political.Languages.languages');
         if (!is_array($languagesConfig) || empty($languagesConfig)) {
             return $importedLanguages;
         }

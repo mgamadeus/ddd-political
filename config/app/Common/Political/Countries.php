@@ -11,9 +11,9 @@
  * multilingual translations (only non-English names that differ from the English default). and adapted to the
  * Tavlo entity model. Contains 237 countries (excluding 'All' meta-entry).
  *
- * @see \App\Domain\Common\Entities\PoliticalEntities\Countries\Country
- * @see \App\Domain\Common\Entities\PoliticalEntities\Countries\CountrySetting
- * @see \App\Domain\Common\Entities\PoliticalEntities\Countries\CountryAddressSetting
+ * @see \DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country
+ * @see \DDD\Domain\Common\Entities\PoliticalEntities\Countries\CountrySetting
+ * @see \DDD\Domain\Common\Entities\PoliticalEntities\Countries\CountryAddressSetting
  */
 return [
     'countries' => [
