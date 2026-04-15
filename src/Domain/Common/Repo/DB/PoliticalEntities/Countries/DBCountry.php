@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Repo\DB\PoliticalEntities\Countries;
 
-use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 use DDD\Domain\Base\Entities\DefaultObject;
 use DDD\Domain\Base\Repo\DB\DBEntity;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineModel;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
+use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 
 /**
  * Database repository for Country entities
@@ -19,6 +19,7 @@ use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
  */
 class DBCountry extends DBEntity
 {
-    public const BASE_ENTITY_CLASS = Country::class;
-    public const BASE_ORM_MODEL = DBCountryModel::class;
+    public const string BASE_ENTITY_CLASS = Country::class;
+
+    public const string BASE_ORM_MODEL = DBCountryModel::class;
 }

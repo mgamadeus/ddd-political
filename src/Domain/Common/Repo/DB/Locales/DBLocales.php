@@ -13,6 +13,6 @@ use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
  */
 class DBLocales extends DBEntitySet
 {
-    public const BASE_REPO_CLASS = DBLocale::class;
-    public const BASE_ENTITY_SET_CLASS = Locales::class;
+    public const string BASE_REPO_CLASS = DBLocale::class;
+    public const string BASE_ENTITY_SET_CLASS = Locales::class;
 }

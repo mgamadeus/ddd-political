@@ -15,11 +15,11 @@ use DDD\Domain\Base\Repo\DB\Database\DatabaseColumn;
 #[ORM\Table(name: 'Languages')]
 class DBLanguageModel extends DoctrineModel
 {
-	public const MODEL_ALIAS = 'Language';
+	public const string MODEL_ALIAS = 'Language';
 
-	public const TABLE_NAME = 'Languages';
+	public const string TABLE_NAME = 'Languages';
 
-	public const ENTITY_CLASS = 'App\Domain\Common\Entities\Languages\Language';
+	public const string ENTITY_CLASS = 'App\Domain\Common\Entities\Languages\Language';
 
 	#[ORM\Column(type: 'string')]
 	public ?string $languageCode;

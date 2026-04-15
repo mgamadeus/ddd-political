@@ -30,7 +30,7 @@ use ReflectionException;
  */
 class StatesService extends EntitiesService
 {
-    public const DEFAULT_ENTITY_CLASS = State::class;
+    public const string DEFAULT_ENTITY_CLASS = State::class;
 
     /**
      * Finds an existing State by shortCode or name within a country, or creates a new one via geocoding.

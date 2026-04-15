@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Repo\DB\Locales;
 
-use DDD\Domain\Common\Entities\Locales\Locale;
 use DDD\Domain\Base\Entities\DefaultObject;
 use DDD\Domain\Base\Repo\DB\DBEntity;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineModel;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
+use DDD\Domain\Common\Entities\Locales\Locale;
 
 /**
  * Database repository for Locale entities
@@ -19,6 +19,7 @@ use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
  */
 class DBLocale extends DBEntity
 {
-    public const BASE_ENTITY_CLASS = Locale::class;
-    public const BASE_ORM_MODEL = DBLocaleModel::class;
+    public const string BASE_ENTITY_CLASS = Locale::class;
+
+    public const string BASE_ORM_MODEL = DBLocaleModel::class;
 }

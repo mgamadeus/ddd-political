@@ -28,7 +28,7 @@ use DDD\Infrastructure\Libs\Config;
  */
 class CountriesService extends EntitiesService
 {
-    public const DEFAULT_ENTITY_CLASS = Country::class;
+    public const string DEFAULT_ENTITY_CLASS = Country::class;
 
     /**
      * Imports all countries from the config file (config/app/Common/Countries.php).

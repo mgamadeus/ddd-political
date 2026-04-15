@@ -17,11 +17,11 @@ use DDD\Domain\Common\Repo\DB\Locales\DBLocaleModel;
 #[ORM\Table(name: 'Countries')]
 class DBCountryModel extends DoctrineModel
 {
-	public const MODEL_ALIAS = 'Country';
+	public const string MODEL_ALIAS = 'Country';
 
-	public const TABLE_NAME = 'Countries';
+	public const string TABLE_NAME = 'Countries';
 
-	public const ENTITY_CLASS = 'App\Domain\Common\Entities\PoliticalEntities\Countries\Country';
+	public const string ENTITY_CLASS = 'App\Domain\Common\Entities\PoliticalEntities\Countries\Country';
 
 	#[DatabaseColumn(isMergableJSONColumn: true)]
 	#[ORM\Column(type: 'json')]

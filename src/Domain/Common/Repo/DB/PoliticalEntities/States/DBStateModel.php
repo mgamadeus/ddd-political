@@ -16,11 +16,11 @@ use DDD\Domain\Base\Repo\DB\Database\DatabaseColumn;
 #[ORM\Table(name: 'States')]
 class DBStateModel extends DoctrineModel
 {
-	public const MODEL_ALIAS = 'State';
+	public const string MODEL_ALIAS = 'State';
 
-	public const TABLE_NAME = 'States';
+	public const string TABLE_NAME = 'States';
 
-	public const ENTITY_CLASS = 'App\Domain\Common\Entities\PoliticalEntities\States\State';
+	public const string ENTITY_CLASS = 'App\Domain\Common\Entities\PoliticalEntities\States\State';
 
 	#[DatabaseColumn(isMergableJSONColumn: true)]
 	#[ORM\Column(type: 'json')]

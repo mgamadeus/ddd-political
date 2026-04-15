@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Services\PoliticalEntities;
 
+use DDD\Domain\Base\Entities\Entity;
+use DDD\Domain\Base\Entities\Translatable\Translatable;
+use DDD\Domain\Base\Services\EntitiesService;
+use DDD\Domain\Common\Entities\GeoEntities\GeoPoint;
+use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 use DDD\Domain\Common\Entities\PoliticalEntities\Localities\Localities;
 use DDD\Domain\Common\Entities\PoliticalEntities\Localities\Locality;
-use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 use DDD\Domain\Common\Entities\PoliticalEntities\States\State;
 use DDD\Domain\Common\Repo\Argus\PoliticalEntities\ArgusLocality;
 use DDD\Domain\Common\Repo\DB\PoliticalEntities\Localities\DBLocalities;
 use DDD\Domain\Common\Repo\DB\PoliticalEntities\Localities\DBLocality;
-use DDD\Infrastructure\Services\AppService;
-use DDD\Domain\Base\Entities\Translatable\Translatable;
-use DDD\Domain\Base\Services\EntitiesService;
-use DDD\Domain\Common\Entities\GeoEntities\GeoPoint;
 use DDD\Infrastructure\Exceptions\BadRequestException;
 use DDD\Infrastructure\Exceptions\InternalErrorException;
-use Google\Cloud\Core\Exception\NotFoundException;
+use DDD\Infrastructure\Exceptions\NotFoundException;
+use DDD\Infrastructure\Services\DDDService;
 use ReflectionException;
 
 /**
@@ -31,7 +32,7 @@ use ReflectionException;
  */
 class LocalitiesService extends EntitiesService
 {
-    public const DEFAULT_ENTITY_CLASS = Locality::class;
+    public const string DEFAULT_ENTITY_CLASS = Locality::class;
 
     /**
      * Finds an existing Locality by placeId, name+coordinates, or name+country, or creates a new one via geocoding.
@@ -106,7 +107,7 @@ class LocalitiesService extends EntitiesService
                 }
                 return null;
             }
-            AppService::instance()->deactivateEntityRightsRestrictions();
+            DDDService::instance()->deactivateEntityRightsRestrictions();
             Translatable::setTranslationSettingsSnapshot();
             Translatable::setCurrentCountryCode(null);
             Translatable::setCurrentLanguageCode($locality->country->getDefaultLanguage($locality->country)->languageCode);
@@ -114,15 +115,15 @@ class LocalitiesService extends EntitiesService
             $locality->setTranslationForProperty('name', $localizedName, $currentLanguageCode);
             $locality->update();
             Translatable::restoreTranslationSettingsSnapshot();
-            AppService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
+            DDDService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
             return $locality;
         } else {
             $currentLocalizedName = $locality->getTranslationForProperty('name', $currentLanguageCode);
             if (!$currentLocalizedName || $currentLocalizedName !== $localizedName) {
-                AppService::instance()->deactivateEntityRightsRestrictions();
+                DDDService::instance()->deactivateEntityRightsRestrictions();
                 $locality->setTranslationForProperty('name', $localizedName, $currentLanguageCode);
                 $locality->update();
-                AppService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
+                DDDService::instance()->restoreEntityRightsRestrictionsStateSnapshot();
             }
         }
         return $locality;
@@ -142,29 +143,6 @@ class LocalitiesService extends EntitiesService
         $queryBuilder->andWhere(
             "{$alias}.placeId = :placeId"
         )->setParameter('placeId', $placeId);
-        return $dbLocality->find($queryBuilder);
-    }
-
-    /**
-     * Finds a Locality by name using FULLTEXT search on the #[Translatable] name column.
-     * Optionally narrows results by state to disambiguate localities with the same name.
-     *
-     * @param string $name The localized locality name to search for (e.g., 'München', 'Munich')
-     * @param State|null $state Optional state to narrow the search within
-     * @return Locality|null The matching Locality or null if not found
-     */
-    public function findByNameAndState(string $name, ?State $state = null): ?Locality
-    {
-        $dbLocality = $this->getEntityRepoClassInstance();
-        $queryBuilder = $dbLocality->createQueryBuilder();
-        $alias = $dbLocality::getBaseModelAlias();
-        $queryBuilder->andWhere(
-            "MATCH ({$alias}.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
-        )->setParameter('searchName', $name);
-        if ($state) {
-            $queryBuilder->andWhere("{$alias}.stateId = :stateId")
-                ->setParameter('stateId', $state->id);
-        }
         return $dbLocality->find($queryBuilder);
     }
 
@@ -211,6 +189,28 @@ class LocalitiesService extends EntitiesService
         $queryBuilder->setParameter('searchPointOrder', $searchPointWkt);
         $queryBuilder->setMaxResults(1);
 
+        return $dbLocality->find($queryBuilder);
+    }
+
+    /**
+     * Finds a Locality by name using FULLTEXT search on the #[Translatable] name column.
+     * Optionally narrows results by state to disambiguate localities with the same name.
+     *
+     * @param string $name The localized locality name to search for (e.g., 'München', 'Munich')
+     * @param State|null $state Optional state to narrow the search within
+     * @return Locality|null The matching Locality or null if not found
+     */
+    public function findByNameAndState(string $name, ?State $state = null): ?Locality
+    {
+        $dbLocality = $this->getEntityRepoClassInstance();
+        $queryBuilder = $dbLocality->createQueryBuilder();
+        $alias = $dbLocality::getBaseModelAlias();
+        $queryBuilder->andWhere(
+            "MATCH ({$alias}.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
+        )->setParameter('searchName', $name);
+        if ($state) {
+            $queryBuilder->andWhere("{$alias}.stateId = :stateId")->setParameter('stateId', $state->id);
+        }
         return $dbLocality->find($queryBuilder);
     }
 

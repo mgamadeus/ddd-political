@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Repo\DB\PoliticalEntities\Localities;
 
-use DDD\Domain\Common\Entities\PoliticalEntities\Localities\Locality;
 use DDD\Domain\Base\Entities\DefaultObject;
 use DDD\Domain\Base\Repo\DB\DBEntity;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineModel;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
+use DDD\Domain\Common\Entities\PoliticalEntities\Localities\Locality;
 
 /**
  * Database repository for Locality entities
@@ -19,6 +19,7 @@ use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
  */
 class DBLocality extends DBEntity
 {
-    public const BASE_ENTITY_CLASS = Locality::class;
-    public const BASE_ORM_MODEL = DBLocalityModel::class;
+    public const string BASE_ENTITY_CLASS = Locality::class;
+
+    public const string BASE_ORM_MODEL = DBLocalityModel::class;
 }

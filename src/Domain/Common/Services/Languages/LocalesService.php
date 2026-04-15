@@ -28,7 +28,7 @@ use DDD\Infrastructure\Libs\Config;
  */
 class LocalesService extends EntitiesService
 {
-    public const DEFAULT_ENTITY_CLASS = Locale::class;
+    public const string DEFAULT_ENTITY_CLASS = Locale::class;
 
     /**
      * Find a locale by its composite key (languageCode + countryShortCode)

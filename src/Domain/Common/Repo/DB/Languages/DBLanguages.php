@@ -13,6 +13,6 @@ use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
  */
 class DBLanguages extends DBEntitySet
 {
-    public const BASE_REPO_CLASS = DBLanguage::class;
-    public const BASE_ENTITY_SET_CLASS = Languages::class;
+    public const string BASE_REPO_CLASS = DBLanguage::class;
+    public const string BASE_ENTITY_SET_CLASS = Languages::class;
 }

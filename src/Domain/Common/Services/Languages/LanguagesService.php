@@ -26,7 +26,7 @@ use DDD\Infrastructure\Libs\Config;
  */
 class LanguagesService extends EntitiesService
 {
-    public const DEFAULT_ENTITY_CLASS = Language::class;
+    public const string DEFAULT_ENTITY_CLASS = Language::class;
 
     /**
      * Find a language by its ISO 639-1 language code

@@ -16,11 +16,11 @@ use DDD\Domain\Common\Repo\DB\PoliticalEntities\Countries\DBCountryModel;
 #[ORM\Table(name: 'PoliticalRegions')]
 class DBPoliticalRegionModel extends DoctrineModel
 {
-	public const MODEL_ALIAS = 'PoliticalRegion';
+	public const string MODEL_ALIAS = 'PoliticalRegion';
 
-	public const TABLE_NAME = 'PoliticalRegions';
+	public const string TABLE_NAME = 'PoliticalRegions';
 
-	public const ENTITY_CLASS = 'App\Domain\Common\Entities\PoliticalEntities\PoliticalRegions\PoliticalRegion';
+	public const string ENTITY_CLASS = 'App\Domain\Common\Entities\PoliticalEntities\PoliticalRegions\PoliticalRegion';
 
 	#[ORM\Column(type: 'string')]
 	public ?string $slug;

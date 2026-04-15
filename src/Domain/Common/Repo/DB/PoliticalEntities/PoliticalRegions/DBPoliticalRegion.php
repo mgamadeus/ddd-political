@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Repo\DB\PoliticalEntities\PoliticalRegions;
 
-use DDD\Domain\Common\Entities\PoliticalEntities\PoliticalRegions\PoliticalRegion;
 use DDD\Domain\Base\Entities\DefaultObject;
 use DDD\Domain\Base\Repo\DB\DBEntity;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineModel;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
+use DDD\Domain\Common\Entities\PoliticalEntities\PoliticalRegions\PoliticalRegion;
 
 /**
  * @method PoliticalRegion find(DoctrineQueryBuilder|string|int $idOrQueryBuilder, bool $useEntityRegistryCache = true, ?DoctrineModel &$loadedOrmInstance = null, bool $deferredCaching = false)
@@ -18,8 +18,8 @@ use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
 class DBPoliticalRegion extends DBEntity
 {
     /** @var string Entity class managed by this repository */
-    public const BASE_ENTITY_CLASS = PoliticalRegion::class;
+    public const string BASE_ENTITY_CLASS = PoliticalRegion::class;
 
     /** @var string Auto-generated Doctrine model class for this repository */
-    public const BASE_ORM_MODEL = DBPoliticalRegionModel::class;
+    public const string BASE_ORM_MODEL = DBPoliticalRegionModel::class;
 }

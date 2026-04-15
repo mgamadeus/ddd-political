@@ -22,7 +22,7 @@ use DDD\Infrastructure\Libs\Config;
  */
 class PoliticalRegionsService extends EntitiesService
 {
-    public const DEFAULT_ENTITY_CLASS = PoliticalRegion::class;
+    public const string DEFAULT_ENTITY_CLASS = PoliticalRegion::class;
 
     /**
      * Find a political region by its stable slug

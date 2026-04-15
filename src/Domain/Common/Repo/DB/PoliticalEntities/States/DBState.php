@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Repo\DB\PoliticalEntities\States;
 
-use DDD\Domain\Common\Entities\PoliticalEntities\States\State;
 use DDD\Domain\Base\Entities\DefaultObject;
 use DDD\Domain\Base\Repo\DB\DBEntity;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineModel;
 use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
+use DDD\Domain\Common\Entities\PoliticalEntities\States\State;
 
 /**
  * Database repository for State entities
@@ -19,6 +19,7 @@ use DDD\Domain\Base\Repo\DB\Doctrine\DoctrineQueryBuilder;
  */
 class DBState extends DBEntity
 {
-    public const BASE_ENTITY_CLASS = State::class;
-    public const BASE_ORM_MODEL = DBStateModel::class;
+    public const string BASE_ENTITY_CLASS = State::class;
+
+    public const string BASE_ORM_MODEL = DBStateModel::class;
 }
