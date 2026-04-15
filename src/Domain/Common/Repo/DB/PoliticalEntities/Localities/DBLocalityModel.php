@@ -20,7 +20,7 @@ class DBLocalityModel extends DoctrineModel
 
     public const string TABLE_NAME = 'Localities';
 
-    public const string ENTITY_CLASS = 'App\Domain\Common\Entities\PoliticalEntities\Localities\Locality';
+    public const string ENTITY_CLASS = 'DDD\Domain\Common\Entities\PoliticalEntities\Localities\Locality';
 
     #[DatabaseColumn(isMergableJSONColumn: true)]
     #[ORM\Column(type: 'json')]

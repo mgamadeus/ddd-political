@@ -21,7 +21,7 @@ class DBLocaleModel extends DoctrineModel
 
 	public const string TABLE_NAME = 'Locales';
 
-	public const string ENTITY_CLASS = 'App\Domain\Common\Entities\Locales\Locale';
+	public const string ENTITY_CLASS = 'DDD\Domain\Common\Entities\Locales\Locale';
 
 	#[DatabaseColumn(isMergableJSONColumn: true)]
 	#[ORM\Column(type: 'json')]

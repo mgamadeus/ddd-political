@@ -19,7 +19,7 @@ class DBLanguageModel extends DoctrineModel
 
 	public const string TABLE_NAME = 'Languages';
 
-	public const string ENTITY_CLASS = 'App\Domain\Common\Entities\Languages\Language';
+	public const string ENTITY_CLASS = 'DDD\Domain\Common\Entities\Languages\Language';
 
 	#[ORM\Column(type: 'string')]
 	public ?string $languageCode;
