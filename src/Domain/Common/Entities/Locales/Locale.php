@@ -119,7 +119,20 @@ class Locale extends Entity
 
     public function uniqueKey(): string
     {
-        return self::uniqueKeyStatic($this->languageCode . '_' . $this->countryShortCode);
+        $key = '';
+        if (isset($this->languageId)) {
+            $key .= $this->languageId;
+        }
+        if (isset($this->countryId)) {
+            $key .= '_' . $this->countryId;
+        }
+        if (isset($this->languageCode)) {
+            $key .= '_' . $this->languageCode;
+        }
+        if (isset($this->countryShortCode)) {
+            $key .= '_' . $this->countryShortCode;
+        }
+        return self::uniqueKeyStatic($key);
     }
 
     public function __toString(): string
