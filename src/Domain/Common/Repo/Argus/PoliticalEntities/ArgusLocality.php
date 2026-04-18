@@ -68,7 +68,7 @@ class ArgusLocality extends Locality
     protected function getLoadPayload(): ?array
     {
         $hasName = isset($this->name) && !empty($this->name);
-        $hasGeoPoint = isset($this->geoPoint) && isset($this->geoPoint->lat) && isset($this->geoPoint->lng);
+        $hasGeoPoint = isset($this->geoPoint->lat) && isset($this->geoPoint->lng);
 
         if (!$hasName && !$hasGeoPoint) {
             return null;
@@ -116,12 +116,12 @@ class ArgusLocality extends Locality
 
         $lat = '';
         $lng = '';
-        if (isset($this->geoPoint) && isset($this->geoPoint->lat) && isset($this->geoPoint->lng)) {
+        if (isset($this->geoPoint->lat) && isset($this->geoPoint->lng)) {
             $lat = (string)$this->geoPoint->lat;
             $lng = (string)$this->geoPoint->lng;
         }
 
-        return static::uniqueKeyStatic("{$name}_{$lat}_{$lng}_{$language}_{$country}_{$state}");
+        return static::uniqueKeyStatic("{$name}_{$lat}_{$lng}_{$language}_{$country}_$state");
     }
 
     /**

@@ -214,7 +214,7 @@ class CountriesService extends EntitiesService
         $repoClass = $this->getEntityRepoClassInstance();
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
-        $queryBuilder->andWhere("{$baseModelAlias}.shortCode = :shortCode");
+        $queryBuilder->andWhere("$baseModelAlias.shortCode = :shortCode");
         $queryBuilder->setParameter('shortCode', $shortCode);
 
         return $repoClass->find($queryBuilder);
@@ -240,9 +240,6 @@ class CountriesService extends EntitiesService
     {
         $localesService = Locale::getService();
         $locale = $localesService->findDefaultLocaleForCountry($country);
-        if (!$locale) {
-            return null;
-        }
-        return $locale->language;
+        return $locale?->language;
     }
 }

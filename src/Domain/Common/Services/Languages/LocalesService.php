@@ -42,8 +42,8 @@ class LocalesService extends EntitiesService
         $repoClass = $this->getEntityRepoClassInstance();
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
-        $queryBuilder->andWhere("{$baseModelAlias}.languageCode = :languageCode");
-        $queryBuilder->andWhere("{$baseModelAlias}.countryShortCode = :countryShortCode");
+        $queryBuilder->andWhere("$baseModelAlias.languageCode = :languageCode");
+        $queryBuilder->andWhere("$baseModelAlias.countryShortCode = :countryShortCode");
         $queryBuilder->setParameter('languageCode', $languageCode);
         $queryBuilder->setParameter('countryShortCode', $countryShortCode);
 
@@ -133,8 +133,8 @@ class LocalesService extends EntitiesService
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
 
-        $queryBuilder->andWhere("{$baseModelAlias}.languageId = :languageId");
-        $queryBuilder->andWhere("{$baseModelAlias}.isDefaultLocaleForLanguage = :isDefault");
+        $queryBuilder->andWhere("$baseModelAlias.languageId = :languageId");
+        $queryBuilder->andWhere("$baseModelAlias.isDefaultLocaleForLanguage = :isDefault");
         $queryBuilder->setParameter('languageId', $language->id);
         $queryBuilder->setParameter('isDefault', true);
         return $repoClass->find($queryBuilder);
@@ -151,7 +151,7 @@ class LocalesService extends EntitiesService
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
 
-        $queryBuilder->andWhere("{$baseModelAlias}.isActive = :isActive");
+        $queryBuilder->andWhere("$baseModelAlias.isActive = :isActive");
         $queryBuilder->setParameter('isActive', true);
 
         return $repoClass->find($queryBuilder);
@@ -168,8 +168,8 @@ class LocalesService extends EntitiesService
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
 
-        $queryBuilder->andWhere("{$baseModelAlias}.countryId = :countryId");
-        $queryBuilder->andWhere("{$baseModelAlias}.isDefaultLocaleForCountry = :isDefault");
+        $queryBuilder->andWhere("$baseModelAlias.countryId = :countryId");
+        $queryBuilder->andWhere("$baseModelAlias.isDefaultLocaleForCountry = :isDefault");
         $queryBuilder->setParameter('countryId', $country->id);
         $queryBuilder->setParameter('isDefault', true);
         return $repoClass->find($queryBuilder);

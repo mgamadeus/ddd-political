@@ -117,7 +117,7 @@ class StatesService extends EntitiesService
         $queryBuilder = $dbState->createQueryBuilder();
         $alias = $dbState::getBaseModelAlias();
         $queryBuilder->andWhere(
-            "{$alias}.shortCode = :shortCode AND {$alias}.countryId = :countryId 
+            "$alias.shortCode = :shortCode AND $alias.countryId = :countryId
             "
         )->setParameter('shortCode', $shortCode)->setParameter('countryId', $country->id);
         return $dbState->find($queryBuilder);
@@ -138,8 +138,8 @@ class StatesService extends EntitiesService
         $alias = $dbState::getBaseModelAlias();
         // FULLTEXT search on name column (BOOLEAN MODE for exact token matching)
         $queryBuilder->andWhere(
-            "MATCH ({$alias}.name) AGAINST (:searchName IN BOOLEAN MODE) > 0
-            AND {$alias}.countryId = :countryId 
+            "MATCH ($alias.name) AGAINST (:searchName IN BOOLEAN MODE) > 0
+            AND $alias.countryId = :countryId
             "
         )->setParameter('searchName', $name)->setParameter('countryId', $country->id);
         return $dbState->find($queryBuilder);

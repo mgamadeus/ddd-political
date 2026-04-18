@@ -32,7 +32,7 @@ class PoliticalRegionsService extends EntitiesService
         $repoClass = $this->getEntityRepoClassInstance();
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
-        $queryBuilder->andWhere("{$baseModelAlias}.slug = :slug");
+        $queryBuilder->andWhere("$baseModelAlias.slug = :slug");
         $queryBuilder->setParameter('slug', $slug);
 
         return $repoClass->find($queryBuilder);

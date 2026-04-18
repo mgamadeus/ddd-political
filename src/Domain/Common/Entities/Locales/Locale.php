@@ -137,7 +137,7 @@ class Locale extends Entity
 
     public function __toString(): string
     {
-        return (isset($this->languageCode) ? $this->languageCode : '') . '-' . (isset($this->countryShortCode) ? $this->countryShortCode : '');
+        return ($this->languageCode ?? '') . '-' . ($this->countryShortCode ?? '');
     }
 
     public function formatDateOrDateTime(DateTime $dateOrDateTime): string

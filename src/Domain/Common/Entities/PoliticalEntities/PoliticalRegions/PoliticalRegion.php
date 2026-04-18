@@ -73,7 +73,7 @@ class PoliticalRegion extends Entity
 
     public function uniqueKey(): string
     {
-        $key = isset($this->id) ? $this->id : (isset($this->slug) ? $this->slug : spl_object_id($this));
+        $key = $this->id ?? $this->slug ?? spl_object_id($this);
         return self::uniqueKeyStatic($key);
     }
 }

@@ -84,7 +84,7 @@ class ArgusState extends State
         $language = $this->currentLanguageCode ?? 'en';
         $country = $this->resolveCountryShortCode() ?? '';
 
-        return static::uniqueKeyStatic("{$name}_{$language}_{$country}");
+        return static::uniqueKeyStatic("{$name}_{$language}_$country");
     }
 
     /**

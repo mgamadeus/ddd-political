@@ -141,7 +141,7 @@ class LocalitiesService extends EntitiesService
         $queryBuilder = $dbLocality->createQueryBuilder();
         $alias = $dbLocality::getBaseModelAlias();
         $queryBuilder->andWhere(
-            "{$alias}.placeId = :placeId"
+            "$alias.placeId = :placeId"
         )->setParameter('placeId', $placeId);
         return $dbLocality->find($queryBuilder);
     }
@@ -165,7 +165,7 @@ class LocalitiesService extends EntitiesService
 
         // FULLTEXT search on name column (BOOLEAN MODE for exact token matching)
         $queryBuilder->andWhere(
-            "MATCH ({$alias}.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
+            "MATCH ($alias.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
         );
         $queryBuilder->setParameter('searchName', $name);
 
@@ -176,14 +176,14 @@ class LocalitiesService extends EntitiesService
             $geoPoint->lat
         );
         $queryBuilder->andWhere(
-            "ST_Distance_Sphere({$alias}.geoPoint, ST_GeomFromText(:searchPoint)) <= :searchRadius"
+            "ST_Distance_Sphere($alias.geoPoint, ST_GeomFromText(:searchPoint)) <= :searchRadius"
         );
         $queryBuilder->setParameter('searchPoint', $searchPointWkt);
         $queryBuilder->setParameter('searchRadius', $searchRadiusInMeters);
 
         // Order by distance ascending to get the closest match
         $queryBuilder->addOrderBy(
-            "ST_Distance_Sphere({$alias}.geoPoint, ST_GeomFromText(:searchPointOrder))",
+            "ST_Distance_Sphere($alias.geoPoint, ST_GeomFromText(:searchPointOrder))",
             'ASC'
         );
         $queryBuilder->setParameter('searchPointOrder', $searchPointWkt);
@@ -206,10 +206,10 @@ class LocalitiesService extends EntitiesService
         $queryBuilder = $dbLocality->createQueryBuilder();
         $alias = $dbLocality::getBaseModelAlias();
         $queryBuilder->andWhere(
-            "MATCH ({$alias}.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
+            "MATCH ($alias.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
         )->setParameter('searchName', $name);
         if ($state) {
-            $queryBuilder->andWhere("{$alias}.stateId = :stateId")->setParameter('stateId', $state->id);
+            $queryBuilder->andWhere("$alias.stateId = :stateId")->setParameter('stateId', $state->id);
         }
         return $dbLocality->find($queryBuilder);
     }

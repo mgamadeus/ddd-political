@@ -1,5 +1,5 @@
 ---
-name: political-module-specialist
+name: ddd-module-political-specialist
 description: Work with countries, languages, locales, political regions, states, and localities from the ddd-common-political module. Use when handling geographic reference data, localization, address formatting, or geocoding states/localities.
 metadata:
   author: mgamadeus

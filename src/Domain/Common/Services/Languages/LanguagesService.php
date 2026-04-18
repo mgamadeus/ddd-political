@@ -39,7 +39,7 @@ class LanguagesService extends EntitiesService
         $repoClass = $this->getEntityRepoClassInstance();
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
-        $queryBuilder->andWhere("{$baseModelAlias}.languageCode = :languageCode");
+        $queryBuilder->andWhere("$baseModelAlias.languageCode = :languageCode");
         $queryBuilder->setParameter('languageCode', $languageCode);
 
         return $repoClass->find($queryBuilder);
@@ -118,15 +118,15 @@ class LanguagesService extends EntitiesService
         $queryBuilder = $repoClass::createQueryBuilder();
         $baseModelAlias = $repoClass::getBaseModelAlias();
 
-        $queryBuilder->andWhere("{$baseModelAlias}.isActive = :isActive");
+        $queryBuilder->andWhere("$baseModelAlias.isActive = :isActive");
         $queryBuilder->setParameter('isActive', true);
 
         if ($languageCodesToFilterFor !== null && !empty($languageCodesToFilterFor)) {
-            $queryBuilder->andWhere("{$baseModelAlias}.languageCode IN (:languageCodes)");
+            $queryBuilder->andWhere("$baseModelAlias.languageCode IN (:languageCodes)");
             $queryBuilder->setParameter('languageCodes', $languageCodesToFilterFor);
         }
 
-        $queryBuilder->orderBy("{$baseModelAlias}.displayOrder", 'ASC');
+        $queryBuilder->orderBy("$baseModelAlias.displayOrder", 'ASC');
 
         return $repoClass->find($queryBuilder);
     }
