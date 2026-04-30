@@ -69,7 +69,7 @@ class Language extends Entity
     /**
      * @var string|null Language name (multilingual, e.g. "German" in English, "Deutsch" in German)
      */
-    #[Translatable]
+    #[Translatable(fullTextIndex: true)]
     public ?string $name;
 
     /**

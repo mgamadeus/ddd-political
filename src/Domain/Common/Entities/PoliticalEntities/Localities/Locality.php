@@ -37,8 +37,7 @@ class Locality extends Entity
     use ChangeHistoryTrait, TranslatableTrait;
 
     /** @var string|null The locality's name (multilingual) */
-    #[Translatable]
-    #[DatabaseIndex(indexType: DatabaseIndex::TYPE_FULLTEXT)]
+    #[Translatable(fullTextIndex: true)]
     public ?string $name;
 
     /** @var string|null The locality's slug */

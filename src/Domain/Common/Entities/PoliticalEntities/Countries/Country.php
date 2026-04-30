@@ -40,7 +40,7 @@ class Country extends Entity
     public const string TYPE_TERRITORY = 'TERRITORY';
 
     /** @var string|null Country name (multilingual) */
-    #[Translatable]
+    #[Translatable(fullTextIndex: true)]
     public ?string $name;
 
     /** @var string|null Country slug */

@@ -54,7 +54,7 @@ class PoliticalRegion extends Entity
     public ?PoliticalRegion $parentPoliticalRegion = null;
 
     /** @var string|null Region name (multilingual) */
-    #[Translatable]
+    #[Translatable(fullTextIndex: true)]
     public ?string $name = null;
 
     /** @var int Display order for UI sorting */

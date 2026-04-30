@@ -37,8 +37,7 @@ class State extends Entity
     use TranslatableTrait;
 
     /** @var string|null The state's full name (multilingual) */
-    #[Translatable]
-    #[DatabaseIndex(indexType: DatabaseIndex::TYPE_FULLTEXT)]
+    #[Translatable(fullTextIndex: true)]
     public ?string $name;
 
     /** @var string|null The state's slug */

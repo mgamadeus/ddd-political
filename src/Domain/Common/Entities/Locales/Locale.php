@@ -35,7 +35,7 @@ class Locale extends Entity
     use TranslatableTrait, QueryOptionsTrait;
 
     /** @var string|null Human-readable locale name (e.g., "Schweizerdeutsch", "Deutsch (Deutschland)", "English (US)") */
-    #[Translatable]
+    #[Translatable(fullTextIndex: true)]
     public ?string $name = null;
 
     /** @var string|null The language code of the locale (e.g., 'de', 'en') */

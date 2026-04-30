@@ -21,6 +21,8 @@ class DBLanguageModel extends DoctrineModel
 
 	public const string ENTITY_CLASS = 'DDD\Domain\Common\Entities\Languages\Language';
 
+	public static array $virtualColumns = ['virtualNameSearch' => [ 'createIndex' => false, 'stored' => true, 'as' => '( CASE WHEN name IS NULL OR JSON_VALID(name) = 0 THEN \'\' ELSE REGEXP_REPLACE( TRIM( BOTH \' \' FROM REGEXP_REPLACE( REGEXP_REPLACE(JSON_UNQUOTE(name), \'^\\\\{\\\\s*|\\\\s*\\\\}\\\\s*$\', \'\'), \'"[^"]+"\\\\s*:\\\\s*"([^"]*)"\\\\s*(,\\\\s*)?\', \'\\\\1 | \' ) ), \'\\\\s*\\\\|\\\\s*$\', \'\' ) END )', 'referenceColumn' => 'nameSearch', 'referenceColumnStored' => true, ]];
+
 	#[ORM\Column(type: 'string')]
 	public ?string $languageCode;
 
@@ -53,5 +55,8 @@ class DBLanguageModel extends DoctrineModel
 	#[ORM\GeneratedValue]
 	#[ORM\Column(type: 'integer')]
 	public int $id;
+
+	#[ORM\Column(type: 'string')]
+	public string $virtualNameSearch;
 
 }
