@@ -3,7 +3,7 @@
     "description": "Countries, languages, locales, political regions, states, localities for mgamadeus/ddd",
     "minimum-stability": "stable",
     "license": "MIT",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "authors": [
         {
             "name": "Marius-Eugen Gerdan",
@@ -12,7 +12,7 @@
     ],
     "require": {
         "mgamadeus/ddd-argus": "^1.0",
-        "mgamadeus/ddd": "^2.10"
+        "mgamadeus/ddd": "^2.70.7"
     },
     "autoload": {
         "psr-4": {

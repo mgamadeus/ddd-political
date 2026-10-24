@@ -30,6 +30,8 @@ use ReflectionException;
  */
 class StatesService extends EntitiesService
 {
+    use NameFulltextFilterTrait;
+
     public const string DEFAULT_ENTITY_CLASS = State::class;
 
     /**
@@ -140,11 +142,8 @@ class StatesService extends EntitiesService
         $queryBuilder = $dbState->createQueryBuilder();
         $alias = $dbState::getBaseModelAlias();
         // FULLTEXT search on name column (BOOLEAN MODE for exact token matching)
-        $queryBuilder->andWhere(
-            "MATCH ($alias." . Translatable::getFullTextSearchVirtualColumnName('name') . ") AGAINST (:searchName IN BOOLEAN MODE) > 0
-            AND $alias.countryId = :countryId
-            "
-        )->setParameter('searchName', $name)->setParameter('countryId', $country->id);
+        $this->applyNameFulltextFilterToQueryBuilder($queryBuilder, $name, State::class);
+        $queryBuilder->andWhere("$alias.countryId = :countryId")->setParameter('countryId', $country->id);
         return $dbState->find($queryBuilder);
     }
 

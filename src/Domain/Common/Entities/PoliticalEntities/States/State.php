@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Entities\PoliticalEntities\States;
 
+use DDD\Domain\Base\Entities\QueryOptions\QueryOptionsTrait;
 use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 use DDD\Domain\Common\Entities\Roles\Role;
 use DDD\Domain\Common\Repo\Argus\PoliticalEntities\ArgusState;
@@ -34,7 +35,7 @@ use DDD\Infrastructure\Traits\Serializer\Attributes\HideProperty;
 #[NoRecursiveUpdate]
 class State extends Entity
 {
-    use TranslatableTrait;
+    use TranslatableTrait, QueryOptionsTrait;
 
     /** @var string|null The state's full name (multilingual) */
     #[Translatable(fullTextIndex: true)]

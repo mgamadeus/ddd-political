@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DDD\Domain\Common\Entities\PoliticalEntities\Localities;
 
+use DDD\Domain\Base\Entities\QueryOptions\QueryOptionsTrait;
 use DDD\Domain\Common\Entities\PoliticalEntities\Countries\Country;
 use DDD\Domain\Common\Entities\PoliticalEntities\States\State;
 use DDD\Domain\Common\Entities\Roles\Role;
@@ -34,7 +35,7 @@ use DDD\Infrastructure\Traits\Serializer\Attributes\HideProperty;
 #[NoRecursiveUpdate]
 class Locality extends Entity
 {
-    use ChangeHistoryTrait, TranslatableTrait;
+    use ChangeHistoryTrait, TranslatableTrait, QueryOptionsTrait;
 
     /** @var string|null The locality's name (multilingual) */
     #[Translatable(fullTextIndex: true)]

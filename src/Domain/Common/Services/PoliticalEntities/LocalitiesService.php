@@ -32,6 +32,8 @@ use ReflectionException;
  */
 class LocalitiesService extends EntitiesService
 {
+    use NameFulltextFilterTrait;
+
     public const string DEFAULT_ENTITY_CLASS = Locality::class;
 
     /**
@@ -164,10 +166,7 @@ class LocalitiesService extends EntitiesService
         $alias = $dbLocality::getBaseModelAlias();
 
         // FULLTEXT search on name column (BOOLEAN MODE for exact token matching)
-        $queryBuilder->andWhere(
-            "MATCH ($alias." . Translatable::getFullTextSearchVirtualColumnName('name') . ") AGAINST (:searchName IN BOOLEAN MODE) > 0"
-        );
-        $queryBuilder->setParameter('searchName', $name);
+        $this->applyNameFulltextFilterToQueryBuilder($queryBuilder, $name, Locality::class);
 
         // Geographic radius filter using ST_Distance_Sphere
         $searchPointWkt = sprintf(
@@ -205,9 +204,7 @@ class LocalitiesService extends EntitiesService
         $dbLocality = $this->getEntityRepoClassInstance();
         $queryBuilder = $dbLocality->createQueryBuilder();
         $alias = $dbLocality::getBaseModelAlias();
-        $queryBuilder->andWhere(
-            "MATCH ($alias." . Translatable::getFullTextSearchVirtualColumnName('name') . ") AGAINST (:searchName IN BOOLEAN MODE) > 0"
-        )->setParameter('searchName', $name);
+        $this->applyNameFulltextFilterToQueryBuilder($queryBuilder, $name, Locality::class);
         if ($state) {
             $queryBuilder->andWhere("$alias.stateId = :stateId")->setParameter('stateId', $state->id);
         }
