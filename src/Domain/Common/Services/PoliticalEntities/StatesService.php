@@ -50,8 +50,8 @@ class StatesService extends EntitiesService
     public function findOrCreateStateAndUpdateLocalizedName(
         string $currentLanguageCode,
         Country $country,
-        string $localizedName = null,
-        string $shortCode = null,
+        ?string $localizedName = null,
+        ?string $shortCode = null,
     ): ?State {
         if (!($localizedName || $shortCode)) {
             if ($this->throwErrors) {

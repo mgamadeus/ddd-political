@@ -85,9 +85,9 @@ class Locale extends Entity
     }
 
     public static function getLocaleForInput(
-        string $language = null,
-        string $countryShortCode = null,
-        Locale $locale = null
+        ?string $language = null,
+        ?string $countryShortCode = null,
+        ?Locale $locale = null
     ): ?Locale {
         if ($locale) {
             return $locale;
