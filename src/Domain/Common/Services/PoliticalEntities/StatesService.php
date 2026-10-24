@@ -85,7 +85,10 @@ class StatesService extends EntitiesService
             DDDService::instance()->deactivateEntityRightsRestrictions();
             Translatable::setTranslationSettingsSnapshot();
             Translatable::setCurrentCountryCode(null);
-            Translatable::setCurrentLanguageCode($state->country->getDefaultLanguage()->languageCode);
+            // getDefaultLanguage() is ?Language: null for a country without a default Locale — keep the current language
+            Translatable::setCurrentLanguageCode(
+                $state->country?->getDefaultLanguage()?->languageCode ?? Translatable::getCurrentLanguageCode()
+            );
             $state->name = $localizedName;
             $state->setTranslationForProperty('name', $localizedName, $currentLanguageCode);
             $state->update();
@@ -138,7 +141,7 @@ class StatesService extends EntitiesService
         $alias = $dbState::getBaseModelAlias();
         // FULLTEXT search on name column (BOOLEAN MODE for exact token matching)
         $queryBuilder->andWhere(
-            "MATCH ($alias.name) AGAINST (:searchName IN BOOLEAN MODE) > 0
+            "MATCH ($alias." . Translatable::getFullTextSearchVirtualColumnName('name') . ") AGAINST (:searchName IN BOOLEAN MODE) > 0
             AND $alias.countryId = :countryId
             "
         )->setParameter('searchName', $name)->setParameter('countryId', $country->id);
@@ -161,7 +164,13 @@ class StatesService extends EntitiesService
             }
             return null;
         }
-        $state->setCurrentLanguageCode($state->country->getDefaultLanguage()->languageCode);
+        // getDefaultLanguage() is ?Language: null for a country without a default Locale. It is only a geocoding language
+        // hint, so fall back to the state's own language, then the request language, instead of aborting
+        $state->setCurrentLanguageCode(
+            $state->country?->getDefaultLanguage()?->languageCode
+                ?? $state->getCurrentLanguageCode()
+                ?? Translatable::getCurrentLanguageCode()
+        );
         $argusState = new ArgusState();
         $argusState = $argusState->fromEntity($state);
         $argusState->argusLoad();

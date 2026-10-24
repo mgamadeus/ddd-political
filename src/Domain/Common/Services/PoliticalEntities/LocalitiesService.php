@@ -165,7 +165,7 @@ class LocalitiesService extends EntitiesService
 
         // FULLTEXT search on name column (BOOLEAN MODE for exact token matching)
         $queryBuilder->andWhere(
-            "MATCH ($alias.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
+            "MATCH ($alias." . Translatable::getFullTextSearchVirtualColumnName('name') . ") AGAINST (:searchName IN BOOLEAN MODE) > 0"
         );
         $queryBuilder->setParameter('searchName', $name);
 
@@ -206,7 +206,7 @@ class LocalitiesService extends EntitiesService
         $queryBuilder = $dbLocality->createQueryBuilder();
         $alias = $dbLocality::getBaseModelAlias();
         $queryBuilder->andWhere(
-            "MATCH ($alias.name) AGAINST (:searchName IN BOOLEAN MODE) > 0"
+            "MATCH ($alias." . Translatable::getFullTextSearchVirtualColumnName('name') . ") AGAINST (:searchName IN BOOLEAN MODE) > 0"
         )->setParameter('searchName', $name);
         if ($state) {
             $queryBuilder->andWhere("$alias.stateId = :stateId")->setParameter('stateId', $state->id);
