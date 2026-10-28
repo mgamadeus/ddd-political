@@ -16,6 +16,7 @@ use DDD\Domain\Base\Entities\QueryOptions\QueryOptionsTrait;
 use DDD\Domain\Base\Entities\Translatable\Translatable;
 use DDD\Domain\Base\Entities\Translatable\TranslatableTrait;
 use DDD\Domain\Base\Repo\DB\Database\DatabaseIndex;
+use DDD\Domain\Base\Repo\DB\Database\UpsertConflictKey;
 use Symfony\Component\Validator\Constraints\Length;
 
 /**
@@ -28,6 +29,9 @@ use Symfony\Component\Validator\Constraints\Length;
  */
 #[LazyLoadRepo(LazyLoadRepo::DB, repoClass: DBPoliticalRegion::class)]
 #[RolesRequiredForUpdate(Role::ADMIN)]
+// the key a save without an id merges on (the entity has several nullable UNIQUE keys); a row without it takes the
+// framework's nullable-key fallback
+#[UpsertConflictKey(columns: ['slug'])]
 class PoliticalRegion extends Entity
 {
     use TranslatableTrait, QueryOptionsTrait;

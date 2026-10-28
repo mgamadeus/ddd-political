@@ -16,6 +16,7 @@ use DDD\Domain\Base\Entities\QueryOptions\QueryOptionsTrait;
 use DDD\Domain\Base\Entities\Translatable\Translatable;
 use DDD\Domain\Base\Entities\Translatable\TranslatableTrait;
 use DDD\Domain\Base\Repo\DB\Database\DatabaseIndex;
+use DDD\Domain\Base\Repo\DB\Database\UpsertConflictKey;
 use DDD\Infrastructure\Validation\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\PositiveOrZero;
@@ -31,6 +32,9 @@ use Symfony\Component\Validator\Constraints\PositiveOrZero;
 #[LazyLoadRepo(LazyLoadRepo::DB, DBLanguage::class)]
 #[RolesRequiredForUpdate(Role::ADMIN)]
 #[NoRecursiveUpdate]
+// the key a save without an id merges on (the entity has several nullable UNIQUE keys); a row without it takes the
+// framework's nullable-key fallback
+#[UpsertConflictKey(columns: ['languageCode'])]
 class Language extends Entity
 {
     use TranslatableTrait, QueryOptionsTrait;

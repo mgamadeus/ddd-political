@@ -20,6 +20,7 @@ use DDD\Domain\Base\Entities\QueryOptions\QueryOptionsTrait;
 use DDD\Domain\Base\Entities\Translatable\Translatable;
 use DDD\Domain\Base\Entities\Translatable\TranslatableTrait;
 use DDD\Domain\Base\Repo\DB\Database\DatabaseIndex;
+use DDD\Domain\Base\Repo\DB\Database\UpsertConflictKey;
 use DDD\Infrastructure\Validation\Constraints\Choice;
 
 /**
@@ -29,6 +30,9 @@ use DDD\Infrastructure\Validation\Constraints\Choice;
 #[NoRecursiveUpdate]
 #[RolesRequiredForUpdate(Role::ADMIN)]
 #[LazyLoadRepo(LazyLoadRepo::DB, DBCountry::class)]
+// the key a save without an id merges on (the entity has several nullable UNIQUE keys); a row without it takes the
+// framework's nullable-key fallback
+#[UpsertConflictKey(columns: ['shortCode'])]
 class Country extends Entity
 {
     use TranslatableTrait, QueryOptionsTrait;

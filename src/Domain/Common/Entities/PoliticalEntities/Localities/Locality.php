@@ -21,6 +21,7 @@ use DDD\Domain\Base\Entities\Translatable\Translatable;
 use DDD\Domain\Base\Entities\Translatable\TranslatableTrait;
 use DDD\Domain\Base\Repo\DB\Database\DatabaseColumn;
 use DDD\Domain\Base\Repo\DB\Database\DatabaseIndex;
+use DDD\Domain\Base\Repo\DB\Database\UpsertConflictKey;
 use DDD\Domain\Common\Entities\GeoEntities\GeoPoint;
 use DDD\Infrastructure\Libs\Datafilter;
 use DDD\Infrastructure\Traits\Serializer\Attributes\HideProperty;
@@ -33,6 +34,9 @@ use DDD\Infrastructure\Traits\Serializer\Attributes\HideProperty;
 #[LazyLoadRepo(LazyLoadRepo::ARGUS, ArgusLocality::class)]
 #[RolesRequiredForUpdate(Role::ADMIN)]
 #[NoRecursiveUpdate]
+// the key a save without an id merges on (the entity has several nullable UNIQUE keys); a row without it takes the
+// framework's nullable-key fallback
+#[UpsertConflictKey(columns: ['placeId'])]
 class Locality extends Entity
 {
     use ChangeHistoryTrait, TranslatableTrait, QueryOptionsTrait;
